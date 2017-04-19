@@ -1,3 +1,20 @@
+<header>
+  <ul class="menu">
+    <li *ngFor="let menuItem of menuItems">{{menuItem.title}}</li>
+  </ul>
+</header>
+<section>
 <h1>
   {{title}}
 </h1>
+<h2>
+  selected page is {{selectedItem.title}}
+</h2>
+<div>
+  <label>a name:</label>
+  <input [(ngModel)] = "selectedItem.title" placeholder="title"/>
+</div>
+</section>
+<footer>
+  footer
+</footer>
