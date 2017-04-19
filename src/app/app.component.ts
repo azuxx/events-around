@@ -2,6 +2,15 @@ import { Component } from '@angular/core';
 
 import {MenuItem} from './menu-item';
 
+
+const MENU_ITEMS: MenuItem[] = [
+  { id: 1, title: 'Home', link: '/home' },
+  { id: 2, title: 'Events', link: '/events' },
+  { id: 3, title: 'Gallery', link: '/gallery'},
+  { id: 4, title: 'Contact us', link: '/contact-us'}
+];
+
+
 //decorator
 @Component({
   selector: 'app-root',
@@ -10,18 +19,20 @@ import {MenuItem} from './menu-item';
 })
 //component class
 export class AppComponent {
+
+  //private static
+  menuItems = MENU_ITEMS;
+
+  //public
   title: string;
-  menuItems: MenuItem[];
   selectedItem : MenuItem;
 
   constructor(){
     this.title = 'Tour of Heroes';
-    this.menuItems = [
-        new MenuItem(1,'Home','/home'),
-        new MenuItem(2,'Events','/events'),
-        new MenuItem(3,'Gallery','/gallery'),
-        new MenuItem(4,'Contact us','/contact-us')
-    ];
     this.selectedItem = this.menuItems[0];
+  }
+
+  onSelect(menuItem: MenuItem): void{
+    this.selectedItem = menuItem;
   }
 }
