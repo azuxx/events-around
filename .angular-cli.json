@@ -19,9 +19,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "assets/vendor/flickity/flickity.css"
       ],
       "scripts": [
+        "assets/vendor/flickity/flickity.pkgd.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

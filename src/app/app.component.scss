@@ -1,0 +1,40 @@
+
+header{
+  .jumbotron{
+    display: flex;
+    flex-direction: column;
+    h1{
+      font-size: 2em;
+      padding: 2rem;
+      text-align: center;
+    }
+    .carousel{
+      .carousel-cell {
+        width: 25%;
+        height: 200px;
+        margin-right: 10px;
+        background: #333;
+        .carousel-cell-image {
+          display: block;
+          max-height: 100%;
+          margin: 0 auto;
+          max-width: 100%;
+          opacity: 0;
+          -webkit-transition: opacity 0.4s;
+                  transition: opacity 0.4s;
+          /* fade in lazy loaded image */
+          &.flickity-lazyloaded,&.flickity-lazyerror {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    nav{
+      ul{
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+}

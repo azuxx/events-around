@@ -1,10 +1,19 @@
 <header>
-  <h1>
-    {{title}}
-  </h1>
-  <ul class="menu">
-    <li *ngFor="let menuItem of menuItems" [class.selected]="menuItem === selectedItem" (click)="onSelect(menuItem)">{{menuItem.title}}</li>
-  </ul>
+  <div class="jumbotron">
+    <h1>
+      {{title}}
+    </h1>
+    <div class="carousel" data-flickity='{ "cellSelector": ".carousel-cell",  "lazyLoad": 2, "initialIndex": 1, "autoPlay": true, "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+      <div *ngFor="let image of images" class="carousel-cell">
+        <img class="carousel-cell-image" [attr.data-flickity-lazyload]="image.url" [alt]="image.alt" />
+      </div>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li *ngFor="let menuItem of menuItems" [class.selected]="menuItem === selectedItem" (click)="onSelect(menuItem)">{{menuItem.title}}</li>
+    </ul>
+  </nav>
 </header>
 <section *ngIf="selectedItem">
   <h2>
