@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { ConditionalSectionComponent } from './conditional-section/conditional-section.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConditionalSectionComponent
   ],
   imports: [
     BrowserModule,
