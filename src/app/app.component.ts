@@ -1,57 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {MenuItem} from './menu-item';
 import {Image} from './image';
 import {Section} from './section';
 
-
-const MENU_ITEMS: MenuItem[] = [
-  { id: 1, title: 'Home', link: 'home' },
-  { id: 2, title: 'Events', link: 'events' },
-  { id: 3, title: 'Gallery', link: 'gallery'},
-  { id: 4, title: 'Contact us', link: 'contact-us'}
-];
-
-const IMAGES: Image[] = [
-  { id: 1, url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg',	alt:'orange tree', description: 'Orange is the new black'},
-  { id: 2, url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg',	alt:'submerged', description: 'Diving the deep'},
-  { id: 3, url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg',	alt:'look out', description: 'Soul chillout'},
-  { id: 4, url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg',	alt:'orange tree', description: 'Orange is the new black'},
-  { id: 5, url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg',	alt:'submerged', description: 'Diving the deep'},
-  { id: 6, url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg',	alt:'look out', description: 'Soul chillout'}
-];
-
-const HOMESECTIONS: Section[] = [
-  { id:1, name:'events', pageRoute: '/events'},
-  { id:2, name:'gallery', pageRoute: '/gallery'},
-  { id:3, name:'newsletter', pageRoute: null},
-  { id:4, name:'contact-us', pageRoute: '/contact-us'}
-];
+import {MenuItemService} from './menu-item.service';
+import {ImageService} from './image.service';
+import {SectionService} from './section.service';
 
 //decorator
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers:[MenuItemService,ImageService,SectionService]
 })
 //component class
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   //public const
-  menuItems = MENU_ITEMS;
-  images = IMAGES;
-  homeSections = HOMESECTIONS;
+  /*menuItems = MENU_ITEMS;*/
 
   //public
   title: string;
-  selectedItem : MenuItem;
+  selectedItem: MenuItem;
+  menuItems: MenuItem[];
+  images: Image[];
+  homeSections: Section[];
 
-  constructor(){
-    this.title = 'The Jumbotron';
-    this.selectedItem = this.menuItems[0];
+  getMenuItems(): void{
+    this.menuItemService.getMenuItems().then(menuItems => {
+      this.menuItems = menuItems;
+      this.selectedItem = this.menuItems[0];
+    });
   }
 
-  onSelect(menuItem: MenuItem): void{
+  getImages(): void{
+    this.imageService.getImages().then(images => this.images = images);
+  }
+
+  getHomeSections(): void{
+    this.sectionService.getHomeSections().then(homeSections => this.homeSections = homeSections);
+  }
+
+  constructor(private menuItemService: MenuItemService, private imageService: ImageService, private sectionService: SectionService) {
+    this.title = 'The Jumbotron';
+  }
+
+  ngOnInit(): void{
+    this.getMenuItems();
+    this.getImages();
+    this.getHomeSections();
+  }
+
+  onSelect(menuItem: MenuItem): void {
     this.selectedItem = menuItem;
   }
+
 }
