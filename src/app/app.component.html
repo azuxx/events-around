@@ -1,39 +1,38 @@
 <header id="#">
-    <div class="jumbotron">
-      <h1>
+  <div class="jumbotron">
+    <h1>
         {{title}}
       </h1>
-      <div class="carousel" data-flickity='{ "cellSelector": ".carousel-cell",  "lazyLoad": 2, "initialIndex": 1, "autoPlay": true, "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
-        <div *ngFor="let image of images" class="carousel-cell">
-          <img class="carousel-cell-image" [attr.data-flickity-lazyload]="image.url" [alt]="image.alt" />
-          <div class="carousel-cell-description-ct">
-            <div class="carousel-cell-description-text">
-                {{image.description}}
-            </div>
+    <div class="carousel" data-flickity='{ "cellSelector": ".carousel-cell",  "lazyLoad": 2, "initialIndex": 1, "autoPlay": true, "prevNextButtons": false, "pageDots": false, "wrapAround": true }'>
+      <div *ngFor="let image of images" class="carousel-cell">
+        <img class="carousel-cell-image" [attr.data-flickity-lazyload]="image.url" [alt]="image.alt" />
+        <div class="carousel-cell-description-ct">
+          <div class="carousel-cell-description-text">
+            {{image.description}}
           </div>
         </div>
       </div>
     </div>
-    <nav>
-      <ul>
-        <li *ngFor="let menuItem of menuItems" [class.selected]="menuItem === selectedItem" (click)="onSelect(menuItem)">
-            <a [href]="'#'+menuItem.link">{{menuItem.title}}</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <app-conditional-section *ngFor="let section of homeSections" [id]="selectedItem.link" [section]="section"></app-conditional-section>
-
+  </div>
+  <nav>
+    <ul>
+      <li *ngFor="let menuItem of menuItems" [class.selected]="menuItem === selectedItem" (click)="onSelect(menuItem)">
+        <a [href]="'#'+menuItem.link">{{menuItem.title}}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<app-conditional-section *ngFor="let section of homeSections" [id]="selectedItem.link" [section]="section"></app-conditional-section>
 <!-- selectedItem.link is used to get to the right position of the section -->
-  <!--section *ngIf="selectedItem" [id]="selectedItem.link">
-    <h2>
-      selected page is {{selectedItem.title}}
-    </h2>
-    <div>
-      <label>a name:</label>
-      <input [(ngModel)]="selectedItem.title" placeholder="title" />
-    </div>
-  </section-->
-  <footer>
-    footer
-  </footer>
+<!--section *ngIf="selectedItem" [id]="selectedItem.link">
+        <h2>
+          selected page is {{selectedItem.title}}
+        </h2>
+        <div>
+          <label>a name:</label>
+          <input [(ngModel)]="selectedItem.title" placeholder="title" />
+        </div>
+      </section-->
+<footer>
+  footer
+</footer>
