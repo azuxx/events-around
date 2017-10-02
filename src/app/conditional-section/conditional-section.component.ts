@@ -12,6 +12,7 @@ export class ConditionalSectionComponent implements OnInit {
   @Input() section: Section;
 
   thenBlock: TemplateRef<any> = null;
+  elseBlock: TemplateRef<any> = null;
 
   @ViewChild('eventsBlock')
   eventsBlock: TemplateRef<any> = null;
