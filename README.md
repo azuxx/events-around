@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Deploy environment
 
 The project has been configured to be deployed in Heroku.
-Init project by running npm install or npm nukeInstall if you want to force a clean install.
+Init project by running npm install or npm run nukeInstall if you want to force a clean install.
 Deploy project in your heroku account by running npm run deploy.
 
 ## Live demo
